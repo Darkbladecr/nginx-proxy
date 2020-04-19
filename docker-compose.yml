@@ -5,8 +5,6 @@ services:
   traefik:
     image: traefik:v1.7
     container_name: traefik-proxy
-    networks:
-      - traefik-proxy-network
     labels:
       - traefik.frontend.rule=Host:monitor.mitrasinovic.co.uk
       - traefik.port=8080
@@ -21,6 +19,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/etc/traefik
+      - ./auth:/auth
 
 # Do not forget to 'docker network create traefik-proxy' before launch, and to add '--network traefik-proxy' to proxied containers.
 

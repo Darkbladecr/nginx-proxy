@@ -4,7 +4,7 @@ defaultEntryPoints = ["http", "https"]
     address = ":8080"
     [entryPoints.dashboard.auth]
       [entryPoints.dashboard.auth.basic]
-        users = ["admin:your_encrypted_password"]
+        usersFile = "/auth/traefik.password"
   [entryPoints.http]
     address = ":80"
       [entryPoints.http.redirect]
