@@ -25,7 +25,7 @@ onHostRule = true
   entryPoint = "http"
 
 [docker]
-domain = "your_domain"
+#domain = "your_domain"
 watch = true
 network = "traefik-proxy"
 exposedByDefault = false
