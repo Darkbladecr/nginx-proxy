@@ -6,16 +6,15 @@
 
 [api]
   dashboard = true
-  insecure = true
 
 [http.routers.my-api]
-  rule = "Host(`localhost`)"
+  rule = "Host(`monitor.mitrasinovic.co.uk`)"
   service = "api@internal"
   middlewares = ["auth"]
 
 [http.middlewares]
   [http.middlewares.auth.basicAuth]
-    usersFile = "etc/traefik/traefik.password"
+    usersFile = "etc/traefik/auth/traefik.password"
 
 [certificatesresolvers.letsencrypt.acme]
   tlschallenge = true
