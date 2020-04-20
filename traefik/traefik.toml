@@ -6,6 +6,7 @@
 
 [api]
   dashboard = true
+  insecure = true
 
 [http.routers.my-api]
   rule = "Host(`monitor.mitrasinovic.co.uk`)"

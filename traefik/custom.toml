@@ -7,3 +7,6 @@
     regex = "^https?://(?:www\\.)?(.+)"
     replacement = "https://${1}"
     permanent = true
+[[tls.certificates]]
+  certFile = "/etc/traefik/ssl/quesmed.com.crt"
+  keyFile = "/etc/traefik/ssl/quesmed.com.key"
