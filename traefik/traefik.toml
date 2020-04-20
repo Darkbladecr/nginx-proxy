@@ -1,31 +1,29 @@
-defaultEntryPoints = ["http", "https"]
-[entryPoints]
-  [entryPoints.dashboard]
-    address = ":8080"
-    [entryPoints.dashboard.auth]
-      [entryPoints.dashboard.auth.basic]
-        users = ["admin:your_encrypted_password"]
-  [entryPoints.http]
-    address = ":80"
-      [entryPoints.http.redirect]
-        entryPoint = "https"
-  [entryPoints.https]
-    address = ":443"
-      [entryPoints.https.tls]
+[entryPoints.web]
+  address = ":80"
+
+[entryPoints.websecure]
+  address = ":443"
 
 [api]
-entrypoint="dashboard"
+  dashboard = true
+  insecure = true
 
-[acme]
-email = "smig88@gmail.com"
-storage = "/etc/traefik/acme.json"
-entryPoint = "https"
-onHostRule = true
-  [acme.httpChallenge]
-  entryPoint = "http"
+[http.routers.my-api]
+  rule = "Host(`localhost`)"
+  service = "api@internal"
+  middlewares = ["auth"]
 
-[docker]
-domain = "your_domain"
-watch = true
-network = "traefik-proxy"
-exposedByDefault = false
+[http.middlewares]
+  [http.middlewares.auth.basicAuth]
+    usersFile = "etc/traefik/traefik.password"
+
+[certificatesresolvers.letsencrypt.acme]
+  tlschallenge = true
+  email = "smig88@gmail.com"
+  storage = "/etc/traefik/acme.json"
+[providers.docker]
+  useBindPortIP = true
+  exposedByDefault = false
+  network = "traefik-proxy"
+[providers.file]
+  filename = "/etc/traefik/custom.toml"

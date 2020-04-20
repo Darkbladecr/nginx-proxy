@@ -3,21 +3,14 @@ version: '3'
 services:
   # Traefik Reverse-Proxy Service
   traefik:
-    image: traefik:v1.7
+    image: traefik:v2.2
     container_name: traefik-proxy
-    networks:
-      - traefik-proxy-network
     labels:
-      - traefik.frontend.rule=Host:monitor.mitrasinovic.co.uk
-      - traefik.port=8080
       - traefik.enable=true
     ports:
-      - 80:80
-      - 443:443
-    # Note: It is know to big a vulnerability to mount Docker host Docker socket into a container
-    # because this can give container root user access to root user in host. There are workarounds
-    # to make Traefik work without this, but then the automatic service discovery doesn't work and
-    # you have to manually configure Traefik.
+      - '80:80'
+      - '443:443'
+      - '8080:8080'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/etc/traefik
