@@ -14,6 +14,7 @@
 #  keyFile = "/etc/traefik/ssl/quesmed.com.key"
 
 [http.routers.dashboard]
-  rule = "Host(`monitor.mitrasinovic.co.uk`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+  rule = "Host(`stronghome.mitrasinovic.co.uk`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
   service = "api@internal"
   middlewares = "auth"
+  tls = true
