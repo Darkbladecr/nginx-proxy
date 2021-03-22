@@ -15,12 +15,8 @@
 
 [http.middlewares]
   [http.middlewares.auth.basicAuth]
-    usersFile = "etc/traefik/auth/traefik.password"
+    usersFile = "/etc/traefik/auth/traefik.password"
 
-[certificatesresolvers.letsencrypt.acme]
-  tlschallenge = true
-  email = "smig88@gmail.com"
-  storage = "/etc/traefik/acme.json"
 [providers.docker]
   useBindPortIP = true
   exposedByDefault = false

@@ -3,7 +3,7 @@ version: '3'
 services:
   # Traefik Reverse-Proxy Service
   traefik:
-    image: traefik:v2.2
+    image: traefik:v2.4
     container_name: traefik-proxy
     restart: always  
     labels:
