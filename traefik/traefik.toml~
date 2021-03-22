@@ -6,13 +6,12 @@
 
 [api]
   dashboard = true
-#  insecure = true
+  insecure = true
 
 [http.routers.dashboard]
   rule = "Host(`monitor.mitrasinovic.co.uk`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
   service = "api@internal"
   middlewares = ["auth"]
-  entryPoints = ["web", "websecure"]
 
 [http.middlewares.auth.basicAuth]
   usersFile = "/etc/traefik/auth/traefik.password"
