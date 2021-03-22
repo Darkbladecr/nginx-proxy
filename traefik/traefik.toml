@@ -4,18 +4,12 @@
 [entryPoints.websecure]
   address = ":443"
 
+[entryPoints.traefik]
+  address = ":8080"
+
 [api]
   dashboard = true
-#  insecure = true
-
-[http.routers.dashboard]
-  rule = "Host(`monitor.mitrasinovic.co.uk`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
-  service = "api@internal"
-  middlewares = ["auth"]
-  entryPoints = ["web", "websecure"]
-
-[http.middlewares.auth.basicAuth]
-  usersFile = "/etc/traefik/auth/traefik.password"
+  insecure = false
 
 [providers.docker]
   useBindPortIP = true
