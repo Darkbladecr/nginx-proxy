@@ -1,11 +1,9 @@
-version: '3'
+version: '3.9'
 
 services:
   # Traefik Reverse-Proxy Service
   traefik:
     image: traefik:v2.4
-    container_name: traefik-proxy
-    restart: always
     labels:
       - traefik.enable=true
     ports:
@@ -15,10 +13,18 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/etc/traefik
+    networks:
+      - traefik-proxy
+    deploy:
+      placement:
+        max_replicas_per_node: 1
+        constraints:
+          - 'node.role==manager'
 
 # Do not forget to 'docker network create traefik-proxy' before launch, and to add '--network traefik-proxy' to proxied containers.
+# For docker swarm:
+# docker network create --driver=overlay traefik-proxy
 
 networks:
-  default:
-    external:
-      name: traefik-proxy
+  traefik-proxy:
+    external: true
