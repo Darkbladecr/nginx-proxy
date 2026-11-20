@@ -3,7 +3,7 @@ version: '3.9'
 services:
   # Traefik Reverse-Proxy Service
   traefik:
-    image: traefik:v2.11.31
+    image: traefik:v2.11.60
     labels:
       - traefik.enable=true
     ports:
