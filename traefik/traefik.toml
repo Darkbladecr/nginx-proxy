@@ -1,28 +1,16 @@
+[core]
+  # v3 rejects v2 rule forms like Host(`a`, `b`); keep v2 syntax until the labels are converted
+  defaultRuleSyntax = "v2"
+
 [entryPoints.web]
   address = ":80"
-
-# [entryPoints.web.http]
-#  [entryPoints.web.http.redirections]
-#    [entryPoints.web.http.redirections.entryPoint]
-#      to = "websecure"
-#      scheme = "https"
-#      permanent = true
 
 [entryPoints.websecure]
   address = ":443"
 
-# [entryPoints.traefik]
-#   address = ":8080"
-
-# [api]
-#   dashboard = true
-#   insecure = true
-
-[providers.docker]
-#  useBindPortIP = true
+[providers.swarm]
   exposedByDefault = false
   network = "traefik-proxy"
-  swarmMode = true
-#  endpoint = "tcp://127.0.0.1:2377"
+
 [providers.file]
   filename = "/etc/traefik/custom.toml"
