@@ -13,8 +13,8 @@
 #  certFile = "/etc/traefik/ssl/quesmed.com.crt"
 #  keyFile = "/etc/traefik/ssl/quesmed.com.key"
 
-[http.routers.dashboard]
-  rule = "Host(`traefik-dev.mitrasinovic.co.uk`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
-  service = "api@internal"
-  middlewares = "auth"
-  tls = true
+# [http.routers.dashboard]
+#   rule = "Host(`traefik-dev.mitrasinovic.co.uk`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+#   service = "api@internal"
+#   middlewares = "auth"
+#   tls = true
